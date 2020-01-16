@@ -3,12 +3,47 @@ var SerialPort = require('serialport');
 var xbee_api = require('xbee-api');
 var C = xbee_api.constants;
 
+let combinationEnteredString = "";
+
+var blueButtonEnabled = { DIO0: 0, DIO1: 1, DIO2: 1 };
+var whiteButtonEnabled = { DIO0: 1, DIO1: 0, DIO2: 1 };
+
+var code_admin = 1212;
+var code_user = 3434;
+
+var enableGreenLight = {
+  type: 0x17, // xbee_api.constants.FRAME_TYPE.AT_COMMAND
+  //id: 0x52, // optional, nextFrameId() is called per default
+  command: "D2",
+  commandParameter: [0x05],
+};
+
+var disableGreenLight = {
+  type: 0x17, // xbee_api.constants.FRAME_TYPE.AT_COMMAND
+  //id: 0x52, // optional, nextFrameId() is called per default
+  command: "D2",
+  commandParameter: [0x00],
+};
+
+var disableRedLight = {
+  type: 0x17, // xbee_api.constants.FRAME_TYPE.AT_COMMAND
+  //id: 0x52, // optional, nextFrameId() is called per default
+  command: "D3",
+  commandParameter: [0x00],
+};
+
+var enableRedLight = {
+  type: 0x17, // xbee_api.constants.FRAME_TYPE.AT_COMMAND
+  //id: 0x52, // optional, nextFrameId() is called per default
+  command: "D3",
+  commandParameter: [0x05],
+};
+
 var xbeeAPI = new xbee_api.XBeeAPI({
   api_mode: 2
 });
 
-
-let serialport = new SerialPort("/dev/ttyUSB1", {
+let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
   baudRate: 9600,
 }, function (err) {
   if (err) {
@@ -18,7 +53,6 @@ let serialport = new SerialPort("/dev/ttyUSB1", {
 
 serialport.pipe(xbeeAPI.parser);
 xbeeAPI.builder.pipe(serialport);
-
 serialport.on("open", function () {
   var frame_obj = { // AT Request to be sent
     type: C.FRAME_TYPE.AT_COMMAND,
@@ -27,6 +61,9 @@ serialport.on("open", function () {
   };
 
   xbeeAPI.builder.write(frame_obj);
+
+  //console.log(xbeeAPI.newStream());
+  console.log(xbeeAPI)
 
   frame_obj = { // AT Request to be sent
     type: C.FRAME_TYPE.REMOTE_AT_COMMAND_REQUEST,
@@ -41,8 +78,48 @@ serialport.on("open", function () {
 // All frames parsed by the XBee will be emitted here
 
 xbeeAPI.parser.on("data", function (frame) {
-
   //on new device is joined, register it
+
+  if(frame.digitalSamples !== undefined)
+  {
+
+    if(frame.digitalSamples['DIO0'] == 0){
+      combinationEnteredString += "B";
+    }
+
+    if(frame.digitalSamples['DIO1'] == 0){
+      combinationEnteredString += "J";
+    }
+
+    // Si la combinaison entré est la bonne, on allume la led verte pendant 10sec
+    if(combinationEnteredString.match('BJJBBJ')){
+      console.log(combinationEnteredString + "Bonne combi");
+      xbeeAPI.builder.write(enableGreenLight);
+      xbeeAPI.builder.write(disableRedLight);
+
+      sleep(10000).then(() => {
+        xbeeAPI.builder.write(disableGreenLight);
+        xbeeAPI.builder.write(enableRedLight);
+      })
+      return;
+
+    } else {
+      console.log(combinationEnteredString + "faux");
+    }
+  }
+
+    //jsonFrameDigi = JSON.stringify(frame.digitalSamples['DIO0']);
+
+
+  //combinationEnteredString += jsonFrameDigi;
+
+  /*
+  if(jsonFrameDigi == JSON.stringify(blueButtonEnabled))
+    console.log("bleu bleu bleu");
+
+  if(jsonFrameDigi == JSON.stringify(whiteButtonEnabled))
+    xbeeAPI.builder.write()
+  */
 
   //on packet received, dispatch event
   //let dataReceived = String.fromCharCode.apply(null, frame.data);
@@ -58,20 +135,21 @@ xbeeAPI.parser.on("data", function (frame) {
   }
 
   if (C.FRAME_TYPE.NODE_IDENTIFICATION === frame.type) {
+    //console.log(frame);
     // let dataReceived = String.fromCharCode.apply(null, frame.nodeIdentifier);
     // console.log(">> ZIGBEE_RECEIVE_PACKET >", frame);
 
 
   } else if (C.FRAME_TYPE.ZIGBEE_IO_DATA_SAMPLE_RX === frame.type) {
-
+    //console.log(frame);
 
 
   } else if (C.FRAME_TYPE.REMOTE_COMMAND_RESPONSE === frame.type) {
-    
+
   } else {
-    console.debug(frame);
+    //console.debug(frame);
     let dataReceived = String.fromCharCode.apply(null, frame.commandData)
-    console.log(dataReceived);
+    //console.log(dataReceived);
   }
 
 });
@@ -99,6 +177,10 @@ io.on('connection', (client) => {
 const port = 8000;
 io.listen(port);
 console.log('listening on port ', port);
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 //
 // serial_xbee.on("data", function(data) {
 //     console.log(data.type);
