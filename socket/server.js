@@ -3,6 +3,10 @@ var SerialPort = require('serialport');
 var xbee_api = require('xbee-api');
 var C = xbee_api.constants;
 
+let password = "BJJBBBJJJJ";
+let countEnter = 0;
+let truePass = false;
+
 let combinationEnteredString = "";
 
 var blueButtonEnabled = { DIO0: 0, DIO1: 1, DIO2: 1 };
@@ -43,13 +47,16 @@ var xbeeAPI = new xbee_api.XBeeAPI({
   api_mode: 2
 });
 
-let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
+//let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
+let serialport = new SerialPort("COM3",{
   baudRate: 9600,
 }, function (err) {
   if (err) {
     return console.log('Error: ', err.message)
   }
 });
+//xbeeAPI.builder.write(enableRedLight);
+//xbeeAPI.builder.write(disableGreenLight);
 
 serialport.pipe(xbeeAPI.parser);
 xbeeAPI.builder.pipe(serialport);
@@ -92,20 +99,24 @@ xbeeAPI.parser.on("data", function (frame) {
     }
 
     // Si la combinaison entré est la bonne, on allume la led verte pendant 10sec
-    if(combinationEnteredString.match('BJJBBJ')){
-      console.log(combinationEnteredString + "Bonne combi");
-      xbeeAPI.builder.write(enableGreenLight);
-      xbeeAPI.builder.write(disableRedLight);
+      if(!truePass && combinationEnteredString.match(password)){
+        truePass = true;
+        xbeeAPI.builder.write(enableGreenLight);
+        xbeeAPI.builder.write(disableRedLight);
 
-      sleep(10000).then(() => {
-        xbeeAPI.builder.write(disableGreenLight);
-        xbeeAPI.builder.write(enableRedLight);
-      })
-      return;
+        console.log(combinationEnteredString + " : Combinaison correct !");
 
-    } else {
-      console.log(combinationEnteredString + "faux");
-    }
+        setTimeout(function(){
+          xbeeAPI.builder.write(disableGreenLight);
+          xbeeAPI.builder.write(enableRedLight);
+          combinationEnteredString = "";
+          truePass = false;
+        },3000);
+      }
+      else{
+        console.log(combinationEnteredString);
+      }
+
   }
 
     //jsonFrameDigi = JSON.stringify(frame.digitalSamples['DIO0']);
