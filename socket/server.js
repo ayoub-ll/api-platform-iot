@@ -6,11 +6,8 @@ let request = require('request');
 
 
 
-let arrayPassword = RecoverPassword();
-
 var C = xbee_api.constants;
 
-let password = "BJJBBBJJJJ";
 let countEnter = 0;
 let truePass = false;
 
@@ -52,7 +49,7 @@ var xbeeAPI = new xbee_api.XBeeAPI({
 
 //let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
 //let serialport = new SerialPort("COM3",{
-let serialport = new SerialPort("COM4",{
+let serialport = new SerialPort("COM5",{
   baudRate: 9600,
 }, function (err) {
   if (err) {
@@ -91,7 +88,6 @@ serialport.on("open", function () {
 xbeeAPI.parser.on("data", function (frame) {
   //on new device is joined, register it
 
-
   if(frame.digitalSamples !== undefined)
   {
 
@@ -103,24 +99,32 @@ xbeeAPI.parser.on("data", function (frame) {
       combinationEnteredString += "J";
     }
 
+    for(let i = 0; i < passwords.length; i++){
+      let password =  passwords[i];
+      console.log(password);
+
+      if(!truePass && combinationEnteredString.match(password)){
+        truePass = true;
+
+        xbeeAPI.builder.write(enableGreenLight);
+        xbeeAPI.builder.write(disableRedLight);
+
+        console.log(combinationEnteredString + " : Combinaison correct !");
+
+        setTimeout(function(){
+          xbeeAPI.builder.write(disableGreenLight);
+          xbeeAPI.builder.write(enableRedLight);
+          combinationEnteredString = "";
+          truePass = false;
+        },3000);
+      }
+      else{
+        console.log(combinationEnteredString);
+      }
+    }
+
     // Si la combinaison entré est la bonne, on allume la led verte pendant 10sec
-    if(!truePass && combinationEnteredString.match(password)){
-      truePass = true;
-      xbeeAPI.builder.write(enableGreenLight);
-      xbeeAPI.builder.write(disableRedLight);
 
-      console.log(combinationEnteredString + " : Combinaison correct !");
-
-      setTimeout(function(){
-        xbeeAPI.builder.write(disableGreenLight);
-        xbeeAPI.builder.write(enableRedLight);
-        combinationEnteredString = "";
-        truePass = false;
-      },3000);
-    }
-    else{
-      console.log(combinationEnteredString);
-    }
 
   }
 
@@ -165,7 +169,16 @@ io.on('connection', (client) => {
 const port = 8000;
 io.listen(port);
 
-function RecoverPassword(){
+
+
+let passwords = [];
+RecoverPassword(function(data){
+  passwords=data;
+  console.log(passwords);
+});
+
+
+function RecoverPassword(callback){
   var options = {
     url: 'https://localhost:8443/access_passes',
     strictSSL: false,
@@ -174,14 +187,12 @@ function RecoverPassword(){
 
   request.get(options, function(error, response, body) {
     if (!error) {
-      let keys = Object.keys(body);
       let jsonData = JSON.parse(body);
       let passwordArray = [];
       for(let i = 0; i< jsonData["hydra:member"].length; i++){
         passwordArray.push(jsonData["hydra:member"][i]["pass"]);
       }
-      console.log(passwordArray);
-      return passwordArray;
+      callback(passwordArray);
     }
     else {
       console.log(error);
