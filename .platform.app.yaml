@@ -29,8 +29,6 @@ relationships:
 
 
 build:
-    |
-    set -e
 
 deploy:
     |
@@ -41,3 +39,5 @@ web:
         '/':
             root: "\"web\""
             passthru: "/index.php"
+            
+disk: 2048
