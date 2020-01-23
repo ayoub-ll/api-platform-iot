@@ -28,8 +28,8 @@ relationships:
     postgresdatabase: 'dbpostgres:postgresql'
 
 
-build: |
-    set -e
+build:
+    flavor: none
 
 deploy:
     |
