@@ -28,7 +28,8 @@ relationships:
     postgresdatabase: 'dbpostgres:postgresql'
 
 
-build:
+build: |
+    set -e
 
 deploy:
     |
