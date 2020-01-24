@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be50bec7-24b7-495b-8095-32dcdd132e55" name="Default Changelist" comment="" />
+    <list default="true" id="05185b5e-f184-49f8-aff1-b56fed2d4a70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.env" beforeDir="false" afterPath="$PROJECT_DIR$/api/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combinaisonSecurity/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/combinaisonSecurity/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combinaisonSecurity/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/combinaisonSecurity/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combinaisonSecurity/config/entrypoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/combinaisonSecurity/config/entrypoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combinaisonSecurity/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/combinaisonSecurity/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combinaisonSecurity/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/combinaisonSecurity/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/api/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -112,43 +138,88 @@
       <path value="$PROJECT_DIR$/api/vendor/symfony/web-link" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/web-profiler-bundle" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/web-server-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/apache-pack" />
     </include_path>
   </component>
+  <component name="ProjectId" id="1WYi47Q0t1SmB8t38aF8UsGsKjO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.App.js">
+    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/combinaisonSecurity/App.js" working-dir="$PROJECT_DIR$/combinaisonSecurity">
+      <method v="2" />
+    </configuration>
     <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/socket/server.js" working-dir="$PROJECT_DIR$/socket">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.App.js" />
         <item itemvalue="Node.js.server.js" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="05185b5e-f184-49f8-aff1-b56fed2d4a70" name="Default Changelist" comment="" />
+      <created>1579332735699</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579332735699</updated>
+      <workItem from="1579332740492" duration="8591000" />
+      <workItem from="1579410789070" duration="9425000" />
+      <workItem from="1579442569805" duration="1135000" />
+      <workItem from="1579508144193" duration="18000" />
+      <workItem from="1579594626074" duration="37000" />
+      <workItem from="1579595055230" duration="2347000" />
+      <workItem from="1579690387988" duration="27000" />
+      <workItem from="1579705696546" duration="613000" />
+      <workItem from="1579706688521" duration="1179000" />
+      <workItem from="1579711283607" duration="5000000" />
+      <workItem from="1579767060085" duration="6753000" />
+      <workItem from="1579801512057" duration="3346000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state width="1458" height="165" key="GridCell.Tab.0.bottom" timestamp="1579188229665">

@@ -1,6 +1,3 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-process.env.rejectUnauthorized = false;
-
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';

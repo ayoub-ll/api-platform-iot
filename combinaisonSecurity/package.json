@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "buffer": "^5.4.3",
     "expo": "~36.0.0",
     "prop-types": "^15.7.2",

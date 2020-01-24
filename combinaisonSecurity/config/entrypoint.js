@@ -1,1 +1,1 @@
-export const ENTRYPOINT = 'https://192.168.1.72:8443';
+export const ENTRYPOINT = 'https://localhost:8443';
