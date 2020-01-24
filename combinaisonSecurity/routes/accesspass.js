@@ -11,14 +11,14 @@ export default [
               rightTitle="Add"
               onRight={() => Actions.accesspassCreate()}
               key="accesspassList" component={List}
-              title="List of AccessPasss"
+              title="List of AccessPass"
               initial
           />,
           <Scene key="accesspassCreate" component={Create}
                  title="Add a new accesspass"/>,
           <Scene key="accesspassShow" component={Show}
                  title="AccessPass"
-                 leftTitle="< List of AccessPasss"
+                 leftTitle="< List of AccessPass"
                  onLeft={() => {
                    Actions.pop();
                    delayRefresh();

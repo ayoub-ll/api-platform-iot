@@ -10,8 +10,6 @@ const RouterComponent = () => {
     <Router>
       <Stack key="root">
         {AccessPassRoutes}
-        {DeviceRoutes}
-        {GreetingRoutes}
       </Stack>
     </Router>
   );

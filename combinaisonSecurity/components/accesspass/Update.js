@@ -51,14 +51,14 @@ class Update extends Component {
 }
 
 const mapStateToProps = state => ({
-  retrieveError: state.accesspass.update.retrieveError,
-  retrieveLoading: state.accesspass.update.retrieveLoading,
-  updateError: state.accesspass.update.updateError,
-  updateLoading: state.accesspass.update.updateLoading,
-  created: state.accesspass.create.created,
-  deleted: state.accesspass.del.deleted,
-  retrieved: state.accesspass.update.retrieved,
-  updated: state.accesspass.update.updated,
+  retrieveError: state.accessPass.update.retrieveError,
+  retrieveLoading: state.accessPass.update.retrieveLoading,
+  updateError: state.accessPass.update.updateError,
+  updateLoading: state.accessPass.update.updateLoading,
+  created: state.accessPass.create.created,
+  deleted: state.accessPass.del.deleted,
+  retrieved: state.accessPass.update.retrieved,
+  updated: state.accessPass.update.updated,
 });
 
 const mapDispatchToProps = dispatch => {

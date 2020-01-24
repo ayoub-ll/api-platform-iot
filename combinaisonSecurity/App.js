@@ -28,8 +28,7 @@ export default class App extends Component {
   render() {
     const store = createStore(combineReducers({
       accessPass,
-      device,
-      greeting
+      form
     }), {}, applyMiddleware(thunk));
     return (
       <Provider store={store}>

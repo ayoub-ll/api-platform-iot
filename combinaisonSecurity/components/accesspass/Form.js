@@ -25,9 +25,9 @@ class Form extends Component {
                    step={data.step}
                    required={data.required}
                    placeholder={data.placeholder}
-                   id={`accesspass_${data.input.name}`}
+                   id={`accessPass_${data.input.name}`}
                    multiline={true}
-                   keyboardType='numeric'
+                   keyboardType='TextInput'
         />
         {hasError &&
           <FormValidationMessage>{data.meta.error}</FormValidationMessage> }
@@ -69,7 +69,7 @@ const styles = {
 
 export default reduxForm(
     {
-      form: 'accesspass',
+      form: 'accessPass',
       enableReinitialize: true, keepDirtyOnReinitialize: true,
     })(
     Form);

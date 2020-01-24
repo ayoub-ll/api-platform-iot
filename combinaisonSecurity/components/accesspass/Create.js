@@ -38,7 +38,7 @@ class Create extends Component {
 }
 
 const mapStateToProps = state => {
-  const {created, error, loading} = state.accesspass.create;
+  const {created, error, loading} = state.accessPass.create;
   return {created, error, loading};
 };
 

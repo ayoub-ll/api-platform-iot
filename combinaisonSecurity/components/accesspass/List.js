@@ -78,7 +78,7 @@ class ListComponent extends Component {
 }
 
 const mapStateToProps = state => {
-  const {retrieved, error, loading, eventSource} = state.accesspass.list;
+  const {retrieved, error, loading, eventSource} = state.accessPass.list;
   return {retrieved, error, loading, eventSource};
 };
 

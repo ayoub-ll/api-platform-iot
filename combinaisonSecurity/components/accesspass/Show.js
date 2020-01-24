@@ -123,12 +123,12 @@ class Show extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.accesspass.show.error,
-    loading: state.accesspass.show.loading,
-    retrieved: state.accesspass.show.retrieved,
-    deleteError: state.accesspass.del.error,
-    deleteLoading: state.accesspass.del.loading,
-    deleted: state.accesspass.del.deleted,
+    error: state.accessPass.show.error,
+    loading: state.accessPass.show.loading,
+    retrieved: state.accessPass.show.retrieved,
+    deleteError: state.accessPass.del.error,
+    deleteLoading: state.accessPass.del.loading,
+    deleted: state.accessPass.del.deleted,
   };
 };
 
