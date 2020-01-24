@@ -100,6 +100,8 @@
       <path value="$PROJECT_DIR$/api/vendor/symfony/web-link" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/web-profiler-bundle" />
       <path value="$PROJECT_DIR$/api/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/web-server-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/symfony/apache-pack" />
     </include_path>
   </component>
 </project>
