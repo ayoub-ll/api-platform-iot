@@ -4,3 +4,4 @@
 
 /socket/node_modules
 .idea/
+node_modules/
