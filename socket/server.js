@@ -3,6 +3,7 @@ var SerialPort = require('serialport');
 var xbee_api = require('xbee-api');
 let request = require('request');
 
+let passwords = [];
 
 
 
@@ -47,9 +48,9 @@ var xbeeAPI = new xbee_api.XBeeAPI({
   api_mode: 2
 });
 
-//let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
+let serialport = new SerialPort("/dev/tty.SLAB_USBtoUART", {
 //let serialport = new SerialPort("COM3",{
-let serialport = new SerialPort("COM5",{
+//let serialport = new SerialPort("COM5",{
   baudRate: 9600,
 }, function (err) {
   if (err) {
@@ -87,6 +88,12 @@ serialport.on("open", function () {
 // All frames parsed by the XBee will be emitted here
 xbeeAPI.parser.on("data", function (frame) {
   //on new device is joined, register it
+
+
+  RecoverPassword(function(data){
+    passwords=data;
+    console.log(passwords);
+  });
 
   if(frame.digitalSamples !== undefined)
   {
@@ -166,16 +173,13 @@ io.on('connection', (client) => {
   });
 });
 
+
+/*
 const port = 8000;
 io.listen(port);
+*/
 
 
-
-let passwords = [];
-RecoverPassword(function(data){
-  passwords=data;
-  console.log(passwords);
-});
 
 
 function RecoverPassword(callback){
